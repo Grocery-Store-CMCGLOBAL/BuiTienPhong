@@ -67,12 +67,15 @@ public class BillController {
             if (curProduct.isSale()) {
                 bonus = totalSellProduct/curProduct.getBuy()* curProduct.getBonus();
             }
+            //check if the product is existed in bill
             for (Bill bill: bills) {
                 if (bill.getName().equals(curProduct.getName())) {
                     bill.setTotalProduct(bill.getTotalProduct()+totalSellProduct);
                     bill.setTotalBonus(bill.getTotalBonus()+bonus);
                     bills.set(bill.getId()-1, bill);
                     Main.indexBill--;
+                    curProduct.setTotal(curProduct.getTotal()-totalSellProduct-bonus);
+                    products.set(indexProduct, curProduct);
                     return;
                 }
             }
