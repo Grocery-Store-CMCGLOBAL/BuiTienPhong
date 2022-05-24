@@ -64,7 +64,7 @@ public class BillController {
             System.out.print("Enter total product which sell: ");
             double totalSellProduct = Validation.checkInputQuantityLimit(curProduct);
             double bonus = 0;
-            if (curProduct.isSale()) {
+            if (curProduct.isSale() && totalSellProduct >= curProduct.getBuy()) {
                 bonus = totalSellProduct/curProduct.getBuy()* curProduct.getBonus();
             }
             //check if the product is existed in bill
